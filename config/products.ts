@@ -10,3 +10,4 @@ export const PRODUCTS_PRICES = {
 } as const;
 
 export const BASE_PRICE = 14_00;
+export const SHIPPING_TAX = 0.12;
