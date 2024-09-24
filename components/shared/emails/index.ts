@@ -1,0 +1,1 @@
+export { OrderRecievedEmail } from './OrderRecievedEmail';
