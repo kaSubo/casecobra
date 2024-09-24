@@ -1,7 +1,7 @@
 import { ThankYou } from '@/components/shared';
 import { Suspense } from 'react';
 
-export default function Home({
+export default function Page({
 	searchParams: { orderId },
 }: {
 	searchParams: { orderId: string };

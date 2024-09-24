@@ -1,7 +1,6 @@
 import { Footer, NavBar, Providers } from '@/components/shared';
 import { Toaster } from '@/components/ui/';
-import { cn } from '@/lib/utils';
-import type { Metadata } from 'next';
+import { cn, constructMetadata } from '@/lib/utils';
 import { Recursive } from 'next/font/google';
 import './globals.css';
 
@@ -11,10 +10,7 @@ const recursive = Recursive({
 	fallback: ['system-ui', 'arial'],
 });
 
-export const metadata: Metadata = {
-	title: 'CaseCobra',
-	description: 'Your image on a custom phone case',
-};
+export const metadata = constructMetadata();
 
 export default function RootLayout({
 	children,

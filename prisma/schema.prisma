@@ -16,7 +16,7 @@ enum CaseColor {
 
 enum OrderStatus {
   fulfilled
-  shiped
+  shipped
   awaiting_shipment
 }
 

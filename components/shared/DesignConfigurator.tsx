@@ -5,7 +5,10 @@ import { HandleComponent, Title } from '@/components/shared';
 import {
 	AspectRatio,
 	Button,
-	Dropdown,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuTrigger,
 	Label,
 	ScrollArea,
 	Separator,
@@ -42,13 +45,11 @@ export const DesignConfigurator: React.FC<Props> = ({
 	imageUrl,
 	imageDimensions,
 }) => {
-	const { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } =
-		Dropdown;
 	const { startUpload } = useUploadThing('imageUploader');
 	const { toast } = useToast();
 	const { push } = useRouter();
 
-	const { mutate: saveConfig } = useMutation({
+	const { mutate: saveConfig, isPending } = useMutation({
 		mutationKey: ['save-config'],
 		mutationFn: async (args: SaveConfigArgs) => {
 			await Promise.all([saveConfiguration(), _saveConfig(args)]);
@@ -372,6 +373,9 @@ export const DesignConfigurator: React.FC<Props> = ({
 										model: options.model.value,
 									})
 								}
+								disabled={isPending}
+								isLoading={isPending}
+								loadingText='Saving'
 								size='sm'
 								className='w-full'>
 								Continue

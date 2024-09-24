@@ -1,12 +1,12 @@
 'use server';
 
-import { cn } from '@/lib/utils';
-import React from 'react';
 import { Container } from '@/components/shared';
-import Link from 'next/link';
 import { buttonVariants } from '@/components/ui';
-import { ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import { ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
 
 interface Props {
 	className?: string;
@@ -43,7 +43,7 @@ export const NavBar: React.FC<Props> = async ({ className }) => {
 								</Link>
 								{isAdmin ? (
 									<Link
-										href='/api/auth/logout'
+										href='/dashboard'
 										className={buttonVariants({
 											size: 'sm',
 											variant: 'ghost',
