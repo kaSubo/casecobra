@@ -3,7 +3,12 @@
 import { Container } from '@/components/shared';
 import { buttonVariants } from '@/components/ui';
 import { cn } from '@/lib/utils';
-import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
+import {
+	getKindeServerSession,
+	LoginLink,
+	LogoutLink,
+	RegisterLink,
+} from '@kinde-oss/kinde-auth-nextjs/server';
 import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -15,7 +20,7 @@ interface Props {
 export const NavBar: React.FC<Props> = async ({ className }) => {
 	const { getUser } = getKindeServerSession();
 	const user = await getUser();
-	const isAdmin = user?.email === process.env.ADMIN_EMAIL;  
+	const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
 	return (
 		<nav
@@ -33,14 +38,9 @@ export const NavBar: React.FC<Props> = async ({ className }) => {
 					<div className='h-full flex items-center space-x-4'>
 						{user ? (
 							<>
-								<Link
-									href='/api/auth/logout'
-									className={buttonVariants({
-										size: 'sm',
-										variant: 'ghost',
-									})}>
+								<LogoutLink className={buttonVariants({ size: 'sm', variant: 'ghost' })}>
 									Sign Out
-								</Link>
+								</LogoutLink>
 								{isAdmin ? (
 									<Link
 										href='/dashboard'
@@ -66,22 +66,13 @@ export const NavBar: React.FC<Props> = async ({ className }) => {
 							</>
 						) : (
 							<>
-								<Link
-									href='/api/auth/register'
-									className={buttonVariants({
-										size: 'sm',
-										variant: 'ghost',
-									})}>
-									Sign up
-								</Link>
-								<Link
-									href='/api/auth/login'
-									className={buttonVariants({
-										size: 'sm',
-										variant: 'ghost',
-									})}>
+								<RegisterLink
+									className={buttonVariants({ size: 'sm', variant: 'ghost' })}>
+									Register
+								</RegisterLink>
+								<LoginLink className={buttonVariants({ size: 'sm', variant: 'ghost' })}>
 									Login
-								</Link>
+								</LoginLink>
 								<div className='h-8 w-px bg-zinc-200 hidden sm:block' />
 								<Link
 									href='/configure/upload'
